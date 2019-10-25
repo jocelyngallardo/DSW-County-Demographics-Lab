@@ -12,6 +12,8 @@ def main():
 
 def high_income_counties(counties):
     """Return a LIST of the counties with a median household income over $90,000."""
+    for data in counties:
+        if data['Median Household Income']
     
 
 def lowest_median_income(counties):
