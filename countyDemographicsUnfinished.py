@@ -9,6 +9,7 @@ def main():
     print(percent_most_under_18(counties))
     print(lowest_median_income(counties))
     print(state_with_most_counties(counties))
+    print(percent_most_hispanic_or_latino(counties))
 
 def high_income_counties(counties):
     """Return a LIST of the counties with a median household income over $90,000."""
@@ -32,10 +33,9 @@ def alphabetically_first_county(counties):
     #Hint: you can use < to compare strings in Python. ex) "cat" < "dog" gives the value True
     first = counties[0]
     for data in counties:
-        print('hi')
         if data['County'] < first['County']:
             first = data
-        return(first['County'])
+    return(first['County'])
 
     
 def percent_most_under_18(counties):
@@ -44,7 +44,7 @@ def percent_most_under_18(counties):
     for data in counties:
         if data['Age']['Percent Under 18 Years'] > highestPercent['Age']['Percent Under 18 Years']:
             highestPercent = data
-        return(highestPercent['Age']['Percent Under 18 Years'])
+    return(highestPercent['Age']['Percent Under 18 Years'])
     
 
 def county_most_under_18(counties):
@@ -53,19 +53,32 @@ def county_most_under_18(counties):
     for data in counties:
         if data['Age']['Percent Under 18 Years'] > highestPercent['Age']['Percent Under 18 Years']:
             highestPercent = data
-        return(highestPercent['County'])
+    return(highestPercent['County'])
     
 def state_with_most_counties(counties):
     """Return a state that has the most counties."""
     #1. Make a dictionary that has a key for each state and the values keep track of the number of counties in each state
-    
+    states = {}
+    for data in counties:
+        state = data['State']
+        if state in states:
+            states[state]+=1
+        else:
+            states[state] = 1
     #2. Find the state in the dictionary with the most counties
-    
+    mostCounties = 'CA'
+    for data in states:
+        if states[data] > states[mostCounties]:
+            mostCounties = data
     #3. Return the state with the most counties
+    return(mostCounties)
     
-    
-def your_interesting_demographic_function(counties):
+def percent_most_hispanic_or_latino(counties):
     """Compute and return an interesting fact using the demographic data about the counties in the US."""
-
+    percentHispanicLatino = counties[0]
+    for data in counties:
+        if data['Ethnicities']['Hispanic or Latino'] > percentHispanicLatino['Ethnicities']['Hispanic or Latino']
+            percentHispanicLatino = data
+    return(percentHispanicLatino['County'])
 if __name__ == '__main__':
     main()
