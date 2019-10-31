@@ -77,7 +77,7 @@ def percent_most_hispanic_or_latino(counties):
     """Compute and return an interesting fact using the demographic data about the counties in the US."""
     percentHispanicLatino = counties[0]
     for data in counties:
-        if data['Ethnicities']['Hispanic or Latino'] > percentHispanicLatino['Ethnicities']['Hispanic or Latino']
+        if data['Ethnicities']['Hispanic or Latino'] > percentHispanicLatino['Ethnicities']['Hispanic or Latino']:
             percentHispanicLatino = data
     return(percentHispanicLatino['County'])
 if __name__ == '__main__':
